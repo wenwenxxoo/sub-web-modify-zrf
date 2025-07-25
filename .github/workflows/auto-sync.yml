@@ -10,7 +10,7 @@ jobs:
   sync-upstream:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: 检出目标仓库代码（wenwenxxoo/sub-web-modify-fy）
+      # Step 1: 检出目标仓库代码（wenwenxxoo/sub-web-modify-zrf）
       - name: Checkout target repo
         uses: actions/checkout@v4
         with:
@@ -26,7 +26,7 @@ jobs:
       # Step 3: 添加 upstream 源仓库地址
       - name: Add upstream remote
         run: |
-          git remote add upstream https://github.com/youshandefeiyang/sub-web-modify.git
+          git remote add upstream https://github.com/shaoyouvip/sub-web-modify.git
           git fetch upstream
 
       # Step 4: 创建同步分支并合并 upstream 的 master
@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/wenwenxxoo/sub-web-modify-fy.git
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/wenwenxxoo/sub-web-modify-zrf.git
 
           
       # Step 5: 将同步结果 push 到 fork 仓库
