@@ -1,0 +1,28 @@
+name: 🔐 Check GH_TOKEN Scopes
+
+on:
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  check-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛠 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🧪 Check GH_TOKEN Scopes
+        run: |
+          echo "Checking scopes for provided GH_TOKEN..."
+          curl -I -H "Authorization: token ${{ secrets.GH_TOKEN }}" https://api.github.com/
+
+      - name: ✅ Suggest Next Steps
+        run: |
+          echo ""
+          echo "👉 如果你看到 X-OAuth-Scopes，请检查它是否包含所需权限："
+          echo "   - repo"
+          echo "   - workflow"
+          echo "   - contents:write"
+          echo "   - pull_request:write"
+          echo ""
+          echo "❗ 如果没有 Authorization 信息，说明 GH_TOKEN 无效或未设置。"
